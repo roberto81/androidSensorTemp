@@ -4,23 +4,21 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/id"
+        android:id="@+id/ids"
         android:layout_weight="1" />
 
     <TextView
-        android:text="TextView"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/temp"
+        android:id="@+id/temps"
         android:layout_weight="1" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/time"
+        android:id="@+id/times"
         android:layout_weight="1" />
 </LinearLayout>

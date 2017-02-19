@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,6 +20,8 @@ import java.util.concurrent.ExecutionException;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    private ListView listView;
+
     private SensorUpdate sensorUpdateTask;
     private JSONArray sensorArray;
 
@@ -27,12 +30,15 @@ public class MainActivity extends AppCompatActivity {
 
     private List<JSONObject> sensorList;
     private Map<Integer,List<JSONObject>> sensorMapInfo;
+    private SensorListAdapter sensorListAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        listView = (ListView) findViewById(R.id.listSensor);
 
         sensorList = new ArrayList<>();
 
@@ -103,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-/*              //questo for mi serve per fare il log poi andra eliminato.
+            //questo for mi serve per fare il log poi andra eliminato.
                 Log.i(TAG, "Nel Runnable sensorList");
                 for (JSONObject oj: sensorList){
                     try {
@@ -113,13 +119,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-*/
 
+                //devo chiamare l'adapter per aggiornare la lista
 
+                sensorListAdapter.notifyDataSetChanged();
                 infoHandler.postDelayed(this,10000);
 
             }
         };
+
+        sensorListAdapter = new SensorListAdapter(sensorList,this);
+        listView.setAdapter(sensorListAdapter);
         infoHandler.postDelayed(sensorInfoRunnable,0);
 
     }
