@@ -95,21 +95,24 @@ public class MainActivity extends AppCompatActivity {
 
                 for (Map.Entry<Integer , List<JSONObject> > entry: sensorMapInfo.entrySet()){
                     List<JSONObject> list = entry.getValue();
-                    if (sensorList.size() == 0 || sensorList.size() < sensorMapInfo.size()) {
+                    if (sensorList.size() == sensorMapInfo.size()) {
 
+                        int i = sensorList.size();
+                        int j = 0;
+                        while (j < i) {
+                            sensorList.remove(0);
+                            j += 1;
+                        }
                         sensorList.add(list.get(0));
 
                     }else{
-
-                        sensorList = new ArrayList<>();
                         sensorList.add(list.get(0));
-
                     }
 
                 }
 
 
-            //questo for mi serve per fare il log poi andra eliminato.
+                //questo for mi serve per fare il log poi andra eliminato.
                 Log.i(TAG, "Nel Runnable sensorList");
                 for (JSONObject oj: sensorList){
                     try {
@@ -123,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
                 //devo chiamare l'adapter per aggiornare la lista
 
                 sensorListAdapter.notifyDataSetChanged();
-                infoHandler.postDelayed(this,10000);
+                listView.invalidate();
+                infoHandler.postDelayed(this,5000);
 
             }
         };

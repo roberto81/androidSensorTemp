@@ -23,6 +23,7 @@ public class SensorListAdapter extends BaseAdapter{
     private List<JSONObject> list;
 
     public SensorListAdapter(List<JSONObject> list,Context context){
+        super();
         this.list = list;
         this.ctx = context;
         this.layoutInflater = ( LayoutInflater )ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
