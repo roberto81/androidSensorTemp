@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.i(TAG, "cliccata la riga: " + position);
                         Intent intent = new Intent(MainActivity.this,InfoSensor.class);
+                        intent.putExtra("info",sensorMapInfo.get(position).toString());
                         startActivity(intent);
                     }
                 });
