@@ -1,9 +1,12 @@
 package it.robertopallotta.sensortemp;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -127,6 +130,15 @@ public class MainActivity extends AppCompatActivity {
 
                 sensorListAdapter.notifyDataSetChanged();
                 listView.invalidate();
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        Log.i(TAG, "cliccata la riga: " + position);
+                        Intent intent = new Intent(MainActivity.this,InfoSensor.class);
+                        startActivity(intent);
+                    }
+                });
                 infoHandler.postDelayed(this,5000);
 
             }
